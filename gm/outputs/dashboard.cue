@@ -51,11 +51,10 @@ dashboard_config: [
 	},
 	#route & {
 		domain_key: defaults.edge.key
-		route_key: Name
 		route_match: {
-			path:       "/dashboard"
-			match_type: "prefix"
+			path:       string | *"/dashboard/"
 		}
+		route_key: Name
 	},
 
 ]
