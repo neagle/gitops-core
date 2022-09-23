@@ -43,7 +43,7 @@ mesh: meshv1.#Mesh & {
 		images: {
 			proxy:        string | *"quay.io/greymatterio/gm-proxy:1.7.1"
 			catalog:      string | *"quay.io/greymatterio/gm-catalog:3.0.5"
-			dashboard:    string | *"quay.io/greymatterio/gm-dashboard:connections"
+			dashboard:    string | *"quay.io/greymatterio/gm-dashboard:base-path-fix"
 			control:      string | *"quay.io/greymatterio/gm-control:1.7.3"
 			control_api:  string | *"quay.io/greymatterio/gm-control-api:1.7.3"
 			redis:        string | *"redis:latest"
