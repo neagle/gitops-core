@@ -54,13 +54,6 @@ dashboard_config: [
 		route_match: {
 			path:       "/dashboard/"
 		}
-		redirects: [
-			{
-				from:          "^/dashboard$"
-				to:            route_match.path
-				redirect_type: "permanent"
-			},
-		]
 		route_key: Name
 	},
 
