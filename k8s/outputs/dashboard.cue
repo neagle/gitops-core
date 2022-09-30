@@ -38,7 +38,7 @@ dashboard: [
 								containerPort: 1337
 							}]
 							env: [
-								{name: "BASE_URL", value:                     "/dashboard"},
+								{name: "BASE_URL", value:                     "/"},
 								{name: "FABRIC_SERVER", value:                "/services/catalog/"},
 								{name: "CONFIG_SERVER", value:                "/services/control-api/v1.0"},
 								{name: "PROMETHEUS_SERVER", value:            "/services/prometheus/api/v1/"},
