@@ -107,7 +107,7 @@ defaults: {
 		// to create more or less indexes depending on your storage and performance requirements.
 		index: "gm-audits-%Y-%m"
 		// elasticsearch_host can be an IP address or DNS hostname to your Elasticsearch instace.
-		elasticsearch_host: ""
+		elasticsearch_host: "ce2369d9f49c4d0aad061f6e2fca7a2d.centralus.azure.elastic-cloud.com"
 		// elasticsearch_port is the port of your Elasticsearch instance.
 		elasticsearch_port: 443
 		// elasticsearch_endpoint is the full endpoint containing protocol, host, and port
