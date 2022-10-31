@@ -14,7 +14,7 @@ config: {
 	// if we're deploying into OpenShift, request extra permissions
 	openshift: bool | *false @tag(openshift,type=bool)
 	// deploy and configure Prometheus for historical metrics in the Dashboard
-	enable_historical_metrics: bool | *false @tag(enable_historical_metrics,type=bool)
+	enable_historical_metrics: bool | *true @tag(enable_historical_metrics,type=bool)
 	// deploy and configure audit pipeline for observability telemetry
 	enable_audits: bool | *false @tag(enable_audits,type=bool)
 	// whether to automatically copy the image pull secret to watched namespaces for sidecar injection
