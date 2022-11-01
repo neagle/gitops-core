@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: simple-server
+  annotations:
+    greymatter.io/inject-sidecar-to: "3000"
+    greymatter.io/configure-sidecar: "true"
+spec:
+  selector:
+    matchLabels:
+      app: simple-server
+  template:
+    metadata:
+      labels:
+        app: simple-server
+    spec:
+      containers:
+        - name: server
+          image: python:3
+          command: ["python"]
+          args: ["-m", "http.server", "3000"]
