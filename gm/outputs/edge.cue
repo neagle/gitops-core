@@ -16,7 +16,7 @@ edge_config: [
 		listener_key:                defaults.edge.key
 		_gm_observables_topic:       defaults.edge.key
 		_is_ingress:                 true
-		_enable_oidc_authentication: false
+		_enable_oidc_authentication: true
 		_enable_rbac:                false
 		_enable_fault_injection:     false
 		_enable_ext_authz:           false
@@ -51,8 +51,8 @@ edge_config: [
 
 	#proxy & {
 		proxy_key: defaults.edge.key
-		domain_keys: [defaults.edge.key, EgressToRedisName]
-		listener_keys: [defaults.edge.key, EgressToRedisName]
+		domain_keys: [defaults.edge.key, EgressToRedisName, EdgeToKeycloakName]
+		listener_keys: [defaults.edge.key, EgressToRedisName, EdgeToKeycloakName]
 	}
 
 	// egress -> Keycloak for OIDC/JWT Authentication (only necessary with remote JWKS provider)
