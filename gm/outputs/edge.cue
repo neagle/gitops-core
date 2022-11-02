@@ -5,7 +5,7 @@ package greymatter
 let EgressToRedisName = "\(defaults.edge.key)_egress_to_redis"
 
 // Uncomment the below line for use with a remote JWKS provider (in this case, Keycloak)
-// let EdgeToKeycloakName = defaults.edge.oidc.jwt_authn_provider.keycloak.remote_jwks.http_uri.cluster
+let EdgeToKeycloakName = defaults.edge.oidc.jwt_authn_provider.keycloak.remote_jwks.http_uri.cluster
 
 edge_config: [
 	#domain & {
