@@ -140,10 +140,10 @@ defaults: {
 					// uncomment the below remote_jwks configuration. There are coinciding configurations
 					// in ./gm/outputs/edge.cue that you will also need to uncomment.
 					remote_jwks: {
-					 http_uri: {
-					  uri:     "\(endpoint)/auth/realms/\(realm)/protocol/openid-connect/certs"
-					  cluster: "edge_to_keycloak" // this key should be unique across the mesh
-					 }
+						http_uri: {
+							uri:     "\(endpoint)/auth/realms/\(realm)/protocol/openid-connect/certs"
+							cluster: "edge_to_keycloak" // this key should be unique across the mesh
+						}
 					}
 				}
 			}
