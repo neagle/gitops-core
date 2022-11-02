@@ -120,13 +120,13 @@ defaults: {
 		key:        "edge"
 		enable_tls: false
 		oidc: {
-			endpoint_host: ""
-			endpoint_port: 0
+			endpoint_host: "keycloak.greymatter.services"
+			endpoint_port: 8553
 			endpoint:      "https://\(endpoint_host):\(endpoint_port)"
-			domain:        ""
+			domain:        "104.45.186.7"
 			client_id:     "\(defaults.edge.key)"
-			client_secret: ""
-			realm:         ""
+			client_secret: "3a4522e4-6ed0-4ba6-9135-13f0027c4b47"
+			realm:         "greymatter"
 			jwt_authn_provider: {
 				keycloak: {
 					issuer: "\(endpoint)/auth/realms/\(realm)"
