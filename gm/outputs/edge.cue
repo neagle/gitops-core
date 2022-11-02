@@ -58,20 +58,20 @@ edge_config: [
 	// egress -> Keycloak for OIDC/JWT Authentication (only necessary with remote JWKS provider)
 	// NB: You need to add the EdgeToKeycloakName key to the domain_keys and listener_keys 
 	// in the #proxy above for the cluster to be discoverable by Envoy
-	// #cluster & {
-	//  cluster_key:    EdgeToKeycloakName
-	//  _upstream_host: defaults.edge.oidc.endpoint_host
-	//  _upstream_port: defaults.edge.oidc.endpoint_port
-	//  ssl_config: {
-	//   protocols: ["TLSv1_2"]
-	//   sni: defaults.edge.oidc.endpoint_host
-	//  }
-	//  require_tls: true
-	// },
-	// #route & {route_key:   EdgeToKeycloakName},
-	// #domain & {domain_key: EdgeToKeycloakName, port: defaults.edge.oidc.endpoint_port},
-	// #listener & {
-	//  listener_key: EdgeToKeycloakName
-	//  port:         defaults.edge.oidc.endpoint_port
-	// },
+	#cluster & {
+	 cluster_key:    EdgeToKeycloakName
+	 _upstream_host: defaults.edge.oidc.endpoint_host
+	 _upstream_port: defaults.edge.oidc.endpoint_port
+	 ssl_config: {
+	  protocols: ["TLSv1_2"]
+	  sni: defaults.edge.oidc.endpoint_host
+	 }
+	 require_tls: true
+	},
+	#route & {route_key:   EdgeToKeycloakName},
+	#domain & {domain_key: EdgeToKeycloakName, port: defaults.edge.oidc.endpoint_port},
+	#listener & {
+	 listener_key: EdgeToKeycloakName
+	 port:         defaults.edge.oidc.endpoint_port
+	},
 ]
