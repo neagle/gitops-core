@@ -124,16 +124,16 @@ defaults: {
 			endpoint_port: 8553
 			endpoint:      "https://\(endpoint_host):\(endpoint_port)"
 			domain:        "104.45.186.7"
-			client_id:     "\(defaults.edge.key)"
+			client_id:     "edge"
 			client_secret: "3a4522e4-6ed0-4ba6-9135-13f0027c4b47"
 			realm:         "greymatter"
 			jwt_authn_provider: {
 				keycloak: {
 					issuer: "\(endpoint)/auth/realms/\(realm)"
-					audiences: ["\(defaults.edge.key)"]
+					audiences: ["edge"]
 					local_jwks: {
 						inline_string: #"""
-					  {
+						{
 							"keys": [
 									{
 										"kid": "-wqLIfvKPA-nzfizy97BzXW-ZNmNEL5vuNA7IteQqRw",
@@ -163,7 +163,7 @@ defaults: {
 									}
 								]
 							}
-					  """#
+						"""#
 					}
 					// If you want to use a remote JWKS provider, comment out local_jwks above, and
 					// uncomment the below remote_jwks configuration. There are coinciding configurations
