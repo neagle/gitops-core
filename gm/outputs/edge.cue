@@ -22,7 +22,7 @@ edge_config: [
 		_enable_ext_authz:           false
 		_oidc_endpoint:              defaults.edge.oidc.endpoint
 		_oidc_service_url:           "https://\(defaults.edge.oidc.domain):\(defaults.ports.edge_ingress)"
-		_oidc_provider:              "\(defaults.edge.oidc.endpoint)/auth/realms/\(defaults.edge.oidc.realm)"
+		_oidc_provider:              "\(defaults.edge.oidc.endpoint)/realms/\(defaults.edge.oidc.realm)"
 		_oidc_client_id:             defaults.edge.oidc.client_id
 		_oidc_client_secret:         defaults.edge.oidc.client_secret
 		_oidc_cookie_domain:         defaults.edge.oidc.domain
@@ -53,7 +53,7 @@ edge_config: [
 		proxy_key: defaults.edge.key
 		domain_keys: [defaults.edge.key, EgressToRedisName, EdgeToKeycloakName]
 		listener_keys: [defaults.edge.key, EgressToRedisName, EdgeToKeycloakName]
-	},
+	}
 
 	// egress -> Keycloak for OIDC/JWT Authentication (only necessary with remote JWKS provider)
 	// NB: You need to add the EdgeToKeycloakName key to the domain_keys and listener_keys 
@@ -61,7 +61,7 @@ edge_config: [
 	#cluster & {
 	 cluster_key:    EdgeToKeycloakName
 	 _upstream_host: defaults.edge.oidc.endpoint_host
-	 _upstream_port: defaults.edge.oidc.endpoint_port
+	 _upstream_port: 443
 	 ssl_config: {
 	  protocols: ["TLSv1_2"]
 	  sni: defaults.edge.oidc.endpoint_host

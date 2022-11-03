@@ -120,17 +120,17 @@ defaults: {
 		key:        "edge"
 		enable_tls: false
 		oidc: {
-			endpoint_host: "keycloak.greymatter.services"
-			endpoint_port: 8553
+			endpoint_host: "iam2.greymatter.io"
+			endpoint_port: 8443
 			endpoint:      "https://\(endpoint_host):\(endpoint_port)"
 			domain:        "104.45.186.7"
-			client_id:     "edge"
-			client_secret: "3a4522e4-6ed0-4ba6-9135-13f0027c4b47"
-			realm:         "greymatter"
+			client_id:     "example1"
+			client_secret: "dtTDcMoW0mc88i3VJQnYVzOsWPU9hJr9"
+			realm:         "example-realm"
 			jwt_authn_provider: {
 				keycloak: {
-					issuer: "\(endpoint)/auth/realms/\(realm)"
-					audiences: ["edge"]
+					issuer: "\(endpoint)/realms/\(realm)"
+					audiences: ["example1"]
 					// local_jwks: {
 					// 	inline_string: #"""
 					// 	{}
@@ -141,7 +141,7 @@ defaults: {
 					// in ./gm/outputs/edge.cue that you will also need to uncomment.
 					remote_jwks: {
 						http_uri: {
-							uri:     "\(endpoint)/auth/realms/\(realm)/protocol/openid-connect/certs"
+							uri:     "\(endpoint)/realms/\(realm)/protocol/openid-connect/certs"
 							cluster: "edge_to_keycloak" // this key should be unique across the mesh
 						}
 					}
