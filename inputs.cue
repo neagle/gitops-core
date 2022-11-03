@@ -122,7 +122,7 @@ defaults: {
 		oidc: {
 			endpoint_host: "iam2.greymatter.io"
 			endpoint_port: 8443
-			endpoint:      "https://\(endpoint_host):\(endpoint_port)"
+			endpoint:      "https://\(endpoint_host)"
 			domain:        "104.45.186.7"
 			client_id:     "example1"
 			client_secret: "dtTDcMoW0mc88i3VJQnYVzOsWPU9hJr9"
