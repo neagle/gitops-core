@@ -118,7 +118,7 @@ defaults: {
 
 	edge: {
 		key:        "edge"
-		enable_tls: false
+		enable_tls: true
 		oidc: {
 			endpoint_host: "iam2.greymatter.io"
 			endpoint_port: 8443
