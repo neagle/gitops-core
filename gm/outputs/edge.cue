@@ -53,7 +53,7 @@ edge_config: [
 		proxy_key: defaults.edge.key
 		domain_keys: [defaults.edge.key, EgressToRedisName, EdgeToKeycloakName]
 		listener_keys: [defaults.edge.key, EgressToRedisName, EdgeToKeycloakName]
-	}
+	},
 
 	// egress -> Keycloak for OIDC/JWT Authentication (only necessary with remote JWKS provider)
 	// NB: You need to add the EdgeToKeycloakName key to the domain_keys and listener_keys 
