@@ -8,7 +8,7 @@ let EgressToRedisName = "\(Name)_egress_to_redis"
 
 prometheus_config: [
 	// sidecar -> prometheus
-	#domain & {domain_key: LocalName},
+	#domain & {domain_key: LocalName, _force_https: true},
 	#listener & {
 		listener_key:          LocalName
 		_spire_self:           Name
