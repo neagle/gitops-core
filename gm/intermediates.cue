@@ -24,6 +24,7 @@ import (
 	// Set _force_https to true to turn on secure traffic to the service.
 	// For edge services that want TLS, this should be enabled
 	_force_https: bool | *false
+	_require_client_certs: bool | *true
 	// Identifers for the domain object within the mesh
 	domain_key: string
 	name:       string | *"*"
@@ -52,7 +53,7 @@ import (
 					key_path:         "/etc/proxy/tls/sidecar/server.key"
 				},
 			]
-			require_client_certs: true
+			require_client_certs: _require_client_certs
 		}
 	}
 }
