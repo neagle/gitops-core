@@ -27,6 +27,8 @@ edge_config: [
 		_oidc_client_secret:         defaults.edge.oidc.client_secret
 		_oidc_cookie_domain:         defaults.edge.oidc.domain
 		_oidc_realm:                 defaults.edge.oidc.realm
+		_enable_inheaders:           true
+		_enable_impersonation:       true
 	},
 	// This cluster must exist (though it never receives traffic)
 	// so that Catalog will be able to look-up edge instances
