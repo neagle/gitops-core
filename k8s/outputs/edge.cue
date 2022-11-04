@@ -20,7 +20,7 @@ edge: [
 			template: {
 				metadata: {
 					labels: {
-						"greymatter.io/cluster": defaults.edge.key
+						"greymatter.io/cluster":  defaults.edge.key
 						"greymatter.io/workload": "\(config.operator_namespace).\(mesh.metadata.name).\(defaults.edge.key)"
 					}
 				}
@@ -32,13 +32,13 @@ edge: [
 								if defaults.edge.enable_tls == true {
 									{
 										name:      "tls-certs"
-										mountPath: "/etc/proxy/tls/sidecar"
+										mountPath: "/etc/proxy/tls/edge"
 									}
 								},
 							]
 							resources: {
-								limits: { cpu: "200m", memory: "200Mi" }
-								requests: { cpu: "100m", memory: "128Mi" }
+								limits: {cpu: "200m", memory: "200Mi"}
+								requests: {cpu: "100m", memory: "128Mi"}
 							}
 						},
 					]
@@ -46,7 +46,10 @@ edge: [
 							if defaults.edge.enable_tls == true {
 							{
 								name: "tls-certs"
-								secret: {defaultMode: 420, secretName: "gm-edge-ingress-certs"}
+								secret: {
+									defaultMode: 420
+									secretName:  defaults.edge.secret_name
+								}
 							}
 						},
 					]

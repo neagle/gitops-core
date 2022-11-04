@@ -9,8 +9,11 @@ let EdgeToKeycloakName = defaults.edge.oidc.jwt_authn_provider.keycloak.remote_j
 
 edge_config: [
 	#domain & {
-		domain_key:   defaults.edge.key
-		_force_https: defaults.edge.enable_tls
+		domain_key:            defaults.edge.key
+		_force_https:          defaults.edge.enable_tls
+		_trust_file:           "/etc/proxy/tls/edge/ca.crt"
+		_certificate_path:     "/etc/proxy/tls/edge/server.crt"
+		_key_path:             "/etc/proxy/tls/edge/server.key"
 		_require_client_certs: true
 	},
 	#listener & {
@@ -62,19 +65,19 @@ edge_config: [
 	// NB: You need to add the EdgeToKeycloakName key to the domain_keys and listener_keys 
 	// in the #proxy above for the cluster to be discoverable by Envoy
 	#cluster & {
-	 cluster_key:    EdgeToKeycloakName
-	 _upstream_host: defaults.edge.oidc.endpoint_host
-	 _upstream_port: 443
-	 ssl_config: {
-	  protocols: ["TLSv1_2"]
-	  sni: defaults.edge.oidc.endpoint_host
-	 }
-	 require_tls: true
+		cluster_key:    EdgeToKeycloakName
+		_upstream_host: defaults.edge.oidc.endpoint_host
+		_upstream_port: 443
+		ssl_config: {
+			protocols: ["TLSv1_2"]
+			sni: defaults.edge.oidc.endpoint_host
+		}
+		require_tls: true
 	},
 	#route & {route_key:   EdgeToKeycloakName},
 	#domain & {domain_key: EdgeToKeycloakName, port: defaults.edge.oidc.endpoint_port},
 	#listener & {
-	 listener_key: EdgeToKeycloakName
-	 port:         defaults.edge.oidc.endpoint_port
+		listener_key: EdgeToKeycloakName
+		port:         defaults.edge.oidc.endpoint_port
 	},
 ]

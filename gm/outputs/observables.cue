@@ -52,7 +52,7 @@ observables_config: [
 	#cluster & {
 		cluster_key:    EgressToElasticSearchName
 		name:           "elasticsearch"
-		require_tls:    true
+		_force_https:   true
 		_upstream_host: defaults.audits.elasticsearch_host
 		_upstream_port: defaults.audits.elasticsearch_port
 	},

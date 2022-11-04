@@ -117,8 +117,9 @@ defaults: {
 	}
 
 	edge: {
-		key:        "edge"
-		enable_tls: true
+		key:         "edge"
+		enable_tls:  true
+		secret_name: "gm-edge-ingress-certs"
 		oidc: {
 			endpoint_host: "iam2.greymatter.io"
 			endpoint_port: 8443
@@ -132,9 +133,9 @@ defaults: {
 					issuer: "\(endpoint)/realms/\(realm)"
 					audiences: ["example1"]
 					// local_jwks: {
-					// 	inline_string: #"""
-					// 	{}
-					// 	"""#
+					//  inline_string: #"""
+					//  {}
+					//  """#
 					// }
 					// If you want to use a remote JWKS provider, comment out local_jwks above, and
 					// uncomment the below remote_jwks configuration. There are coinciding configurations
@@ -161,6 +162,12 @@ defaults: {
 		ca_secret_name: "server-ca"
 		// should we request a host mount for the socket, or normal volume mount? If true, also requests hostPID permission
 		host_mount_socket: true
+	}
+
+	core_internal_tls_certs: {
+		// use npe cert for internal mtls
+		// Name of kubernetes secret to be mounted
+		cert_secret: string | *defaults.edge.secret_name
 	}
 
 } // defaults

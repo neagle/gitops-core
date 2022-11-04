@@ -9,6 +9,7 @@ import (
 	ext_authz "envoyproxy.io/extensions/filters/http/ext_authz/v3"
 	ext_authz_tcp "envoyproxy.io/extensions/filters/network/ext_authz/v3"
 	lua "envoyproxy.io/extensions/filters/http/lua/v3"
+	"strings"
 )
 
 /////////////////////////////////////////////////////////////
@@ -23,7 +24,7 @@ import (
 #domain: greymatter.#Domain & {
 	// Set _force_https to true to turn on secure traffic to the service.
 	// For edge services that want TLS, this should be enabled
-	_force_https: bool | *false
+	_force_https:          bool | *false
 	_require_client_certs: bool | *false
 	// Identifers for the domain object within the mesh
 	domain_key: string
@@ -34,9 +35,12 @@ import (
 	zone_key: mesh.spec.zone
 	// Configures TLS settings for incoming requests, utilizing 
 	// mounted certificates to allow for HTTPS traffic
-	force_https: _force_https
-	if _force_https == true {
-		ssl_config: greymatter.#SSLConfig & {
+	_trust_file:       string | *"/etc/proxy/tls/sidecar/ca.crt"
+	_certificate_path: string | *"/etc/proxy/tls/sidecar/server.crt"
+	_key_path:         string | *"/etc/proxy/tls/sidecar/server.key"
+	if _force_https == true || (strings.Contains(domain_key, "_ingress") && defaults.edge.enable_tls) {
+		force_https: true
+		ssl_config:  greymatter.#SSLConfig & {
 			// Specify a TLS Protocol to use when communicating
 			// Supported options are:
 			// TLS_AUTO TLSv1_0 TLSv1_1 TLSv1_2 TLSv1_3
@@ -46,11 +50,11 @@ import (
 			// That we specify in the k8s manifests for the service.
 			// If these files are mounted in a different location, change
 			// these paths.
-			trust_file: "/etc/proxy/tls/sidecar/ca.crt"
+			trust_file: _trust_file
 			cert_key_pairs: [
 				greymatter.#CertKeyPathPair & {
-					certificate_path: "/etc/proxy/tls/sidecar/server.crt"
-					key_path:         "/etc/proxy/tls/sidecar/server.key"
+					certificate_path: _certificate_path
+					key_path:         _key_path
 				},
 			]
 			require_client_certs: _require_client_certs
@@ -182,7 +186,7 @@ import (
 			// Note: Inheaders and impersonation only function when mTLS is active
 			// throughout the mesh, via Spire or another means. Also, gm.inheaders
 			// and gm.impersonation generally aren't set on the same proxy.
-			if _enable_inheaders {
+			if _enable_inheaders || defaults.edge.enable_tls {
 				"gm.inheaders"
 			},
 			if _enable_impersonation {
@@ -366,11 +370,15 @@ import (
 	// You can either specify the upstream with these, or leave it to service discovery
 	_upstream_host:           string | *"127.0.0.1"
 	_upstream_port:           int
+	_force_https:             *false | true
 	_spire_self:              string // can specify current identity - defaults to "edge"
 	_spire_other:             string // can specify an allowable upstream identity - defaults to "edge"
 	_enable_circuit_breakers: bool | *false
 	// We can expand options here for load balancers that superseed the lb_policy field
-	_load_balancer: "round_robin" | "least_request" | "maglev" | "ring_hash" | "random"
+	_load_balancer:    "round_robin" | "least_request" | "maglev" | "ring_hash" | "random"
+	_trust_file:       string | *"/etc/proxy/tls/sidecar/ca.crt"
+	_certificate_path: string | *"/etc/proxy/tls/sidecar/server.crt"
+	_key_path:         string | *"/etc/proxy/tls/sidecar/server.key"
 
 	cluster_key: string
 	name:        string | *cluster_key
@@ -387,6 +395,16 @@ import (
 			// _spire_other: "dashboard"
 			_name:    _spire_self
 			_subject: _spire_other
+		}
+	}
+	if (defaults.edge.enable_tls && !(strings.Contains(cluster_key, "_ingress")) ) || _force_https {
+		require_tls: true
+		ssl_config: {
+			cert_key_pairs: [{
+				certificate_path: _certificate_path
+				key_path:         _key_path
+			}]
+			trust_file: _trust_file
 		}
 	}
 	zone_key: mesh.spec.zone
@@ -445,7 +463,7 @@ import (
 		constraints: light: [{
 			cluster_key: _upstream_cluster_key
 			weight:      int | *1
-		}, ... ]
+		}, ...]
 	}]
 	zone_key:       mesh.spec.zone
 	prefix_rewrite: string | *"/"
