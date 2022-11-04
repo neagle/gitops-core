@@ -14,7 +14,7 @@ edge_config: [
 		_trust_file:           "/etc/proxy/tls/edge/ca.crt"
 		_certificate_path:     "/etc/proxy/tls/edge/server.crt"
 		_key_path:             "/etc/proxy/tls/edge/server.key"
-		_require_client_certs: true
+		_require_client_certs: false
 	},
 	#listener & {
 		listener_key:                defaults.edge.key
@@ -31,8 +31,8 @@ edge_config: [
 		_oidc_client_secret:         defaults.edge.oidc.client_secret
 		_oidc_cookie_domain:         defaults.edge.oidc.domain
 		_oidc_realm:                 defaults.edge.oidc.realm
-		_enable_inheaders:           true
-		_enable_impersonation:       true
+		_enable_inheaders:           false
+		_enable_impersonation:       false
 	},
 	// This cluster must exist (though it never receives traffic)
 	// so that Catalog will be able to look-up edge instances

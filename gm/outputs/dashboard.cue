@@ -8,7 +8,7 @@ let EgressToRedisName = "\(Name)_egress_to_redis"
 
 dashboard_config: [
 	// sidecar -> dashboard
-	#domain & {domain_key: LocalName, _force_https: true},
+	#domain & {domain_key: LocalName},
 	#listener & {
 		listener_key:          LocalName
 		_spire_self:           Name

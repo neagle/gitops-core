@@ -9,7 +9,7 @@ let EgressToElasticSearchName = "\(Name)_egress_to_elasticsearch"
 observables_config: [
 
 	// HTTP ingress
-	#domain & {domain_key: ObservablesAppIngressName, _force_https: true},
+	#domain & {domain_key: ObservablesAppIngressName},
 	#listener & {
 		listener_key:          ObservablesAppIngressName
 		_spire_self:           Name

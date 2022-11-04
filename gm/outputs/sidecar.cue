@@ -11,7 +11,7 @@ package greymatter
 
 	objects: [
 		// sidecar -> local service
-		#domain & {domain_key: LocalName, _force_https: true},
+		#domain & {domain_key: LocalName},
 		#listener & {
 			listener_key:          LocalName
 			_spire_self:           Name

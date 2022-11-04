@@ -9,7 +9,7 @@ let EgressToRedisName = "\(Name)_egress_to_redis"
 catalog_config: [
 
 	// Catalog HTTP ingress
-	#domain & {domain_key: CatalogIngressName, _force_https: true},
+	#domain & {domain_key: CatalogIngressName},
 	#listener & {
 		listener_key:          CatalogIngressName
 		_spire_self:           Name

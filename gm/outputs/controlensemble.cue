@@ -9,7 +9,7 @@ let EgressToRedisName = "\(Name)_egress_to_redis"
 controlensemble_config: [
 
 	// Control API HTTP ingress
-	#domain & {domain_key: ControlAPIIngressName, _force_https: true},
+	#domain & {domain_key: ControlAPIIngressName},
 	#listener & {
 		listener_key:          ControlAPIIngressName
 		_spire_self:           Name

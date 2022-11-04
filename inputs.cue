@@ -118,7 +118,7 @@ defaults: {
 
 	edge: {
 		key:         "edge"
-		enable_tls:  true
+		enable_tls:  false
 		secret_name: "gm-edge-ingress-certs"
 		oidc: {
 			endpoint_host: "iam2.greymatter.io"
