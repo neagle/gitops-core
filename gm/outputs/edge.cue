@@ -11,6 +11,7 @@ edge_config: [
 	#domain & {
 		domain_key:   defaults.edge.key
 		_force_https: defaults.edge.enable_tls
+		_require_client_certs: true
 	},
 	#listener & {
 		listener_key:                defaults.edge.key

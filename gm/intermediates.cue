@@ -24,7 +24,7 @@ import (
 	// Set _force_https to true to turn on secure traffic to the service.
 	// For edge services that want TLS, this should be enabled
 	_force_https: bool | *false
-	_require_client_certs: bool | *true
+	_require_client_certs: bool | *false
 	// Identifers for the domain object within the mesh
 	domain_key: string
 	name:       string | *"*"
