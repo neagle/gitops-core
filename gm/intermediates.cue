@@ -397,16 +397,17 @@ import (
 			_subject: _spire_other
 		}
 	}
-	if (defaults.edge.enable_tls && !(strings.Contains(cluster_key, "_ingress")) ) || _force_https {
-		require_tls: true
-		ssl_config: {
-			cert_key_pairs: [{
-				certificate_path: _certificate_path
-				key_path:         _key_path
-			}]
-			trust_file: _trust_file
-		}
-	}
+	require_tls: _force_https
+	// if (defaults.edge.enable_tls && !(strings.Contains(cluster_key, "_ingress")) ) || _force_https {
+	//  require_tls: true
+	//  ssl_config: {
+	//   cert_key_pairs: [{
+	//    certificate_path: _certificate_path
+	//    key_path:         _key_path
+	//   }]
+	//   trust_file: _trust_file
+	//  }
+	// }
 	zone_key: mesh.spec.zone
 
 	if _enable_circuit_breakers {
