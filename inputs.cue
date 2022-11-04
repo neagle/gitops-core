@@ -105,7 +105,7 @@ defaults: {
 		// index determines the index ID in Elasticsearch. The default naming convention
 		// will generate a new index each month. The index configuration can be changed
 		// to create more or less indexes depending on your storage and performance requirements.
-		index: "gm-audits-%Y-%m"
+		index: "pki-test-gm-audits-%Y-%m"
 		// elasticsearch_host can be an IP address or DNS hostname to your Elasticsearch instace.
 		elasticsearch_host: "ce2369d9f49c4d0aad061f6e2fca7a2d.centralus.azure.elastic-cloud.com"
 		// elasticsearch_port is the port of your Elasticsearch instance.

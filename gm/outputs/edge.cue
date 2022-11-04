@@ -16,7 +16,7 @@ edge_config: [
 		listener_key:                defaults.edge.key
 		_gm_observables_topic:       defaults.edge.key
 		_is_ingress:                 true
-		_enable_oidc_authentication: true
+		_enable_oidc_authentication: false
 		_enable_rbac:                false
 		_enable_fault_injection:     false
 		_enable_ext_authz:           false

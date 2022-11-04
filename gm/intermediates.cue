@@ -52,6 +52,7 @@ import (
 					key_path:         "/etc/proxy/tls/sidecar/server.key"
 				},
 			]
+			require_client_certs: true
 		}
 	}
 }
